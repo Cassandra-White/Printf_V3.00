@@ -1,17 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_put_flag_hex.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mrubio <mrubio@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/16 19:46:28 by mrubio            #+#    #+#             */
-/*   Updated: 2020/10/28 01:37:16 by mrubio           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../ft_printf.h"
-
 
 int		ft_write_hex(unsigned int num, int ascii, t_flg flg)
 {
@@ -34,11 +21,11 @@ int		write_width_hex(unsigned int num, t_flg *flg)
 
 	x = 0;
 	i = flg->before;
-    if(flg->after > ft_hex_len(num))
-        size = flg->after;
-    else
-        size = ft_hex_len(num);
-	i = i - (size + (num < 0));
+	if (flg->after > ft_hex_len(num))
+		size = flg->after;
+	else
+		size = ft_hex_len(num);
+	i = i - (size + (num));
 	if (num == 0 && flg->after == 0)
 		i++;
 	if (flg->zero == 1)
@@ -47,7 +34,7 @@ int		write_width_hex(unsigned int num, t_flg *flg)
 	else
 		while (i-- > 0)
 			x = x + ft_putchar(' ');
-	if (num < 0 && flg->align == 0 && flg->zero == 0)
+	if (num && flg->align == 0 && flg->zero == 0)
 		ft_putchar('-');
 	return (x);
 }
@@ -57,7 +44,7 @@ int		write_sign_hex(unsigned int num)
 	int x;
 
 	x = 0;
-	if (num < 0)
+	if (num)
 		x = x + ft_putchar('-');
 	return (x);
 }

@@ -8,10 +8,10 @@ int		write_width(long num, t_flg *flg)
 
 	x = 0;
 	i = flg->before;
-    if (flg->after > ft_nb_len(num))
-        size = flg->after;
-    else
-        size = ft_nb_len(num);
+	if (flg->after > ft_nb_len(num))
+		size = flg->after;
+	else
+		size = ft_nb_len(num);
 	i = i - (size + (num < 0));
 	if (num < 0 && flg->align == 0 && flg->zero == 1)
 		x = x + ft_putchar('-');

@@ -1,4 +1,6 @@
-int				ft_nb_len(long n)
+#include "../ft_printf.h"
+
+int		ft_nb_len(long n)
 {
 	int size;
 

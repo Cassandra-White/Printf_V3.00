@@ -2,7 +2,7 @@
 
 void		read_ast(char *str, va_list args, t_flg **flg)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	(*flg)->ast = -1;
@@ -25,8 +25,8 @@ void		read_ast(char *str, va_list args, t_flg **flg)
 
 int			ft_charint(char *str)
 {
-	int x;
-	int num;
+	int	x;
+	int	num;
 
 	num = 0;
 	x = 0;
@@ -40,7 +40,7 @@ int			ft_charint(char *str)
 
 int			read_dot(char *str, t_flg **flg)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	(*flg)->dot = 1;
@@ -56,41 +56,38 @@ int			read_dot(char *str, t_flg **flg)
 	}
 }
 
-
-int         ft_read(char *str, va_list args, t_flg *flg)
+int			ft_read(char *str, va_list args, t_flg *flg)
 {
-        int x;
+	int	x;
 
-        x = 0;
-        while (ft_strchr("-0.*123456789 ", str[x]) != NULL)
-        {
-            if (str[x] == '0')
-			    flg->zero = 1;
-            else if (str[x] == '-')
-                flg->align = 1;
-            else if (str[x] == '*')
-                read_ast(str + x, args, &flg);
-            else if (str[x] >= '1' && str[x] <= '9' && flg->after == -1)
-            {
-                flg->before = ft_charint(str + x);
-                x = x + (ft_nb_len(flg->before) - 1);
-            }
-            else if (str[x] == '.')
-                x = x + read_dot(str + x, &flg);
-            x++;          
-        }
-        return (x);
+	x = 0;
+	while (ft_strchr("-0.*123456789 ", str[x]) != NULL)
+	{
+		if (str[x] == '0')
+			flg->zero = 1;
+		else if (str[x] == '-')
+			flg->align = 1;
+		else if (str[x] == '*')
+			read_ast(str + x, args, &flg);
+		else if (str[x] >= '1' && str[x] <= '9' && flg->after == -1)
+		{
+			flg->before = ft_charint(str + x);
+			x = x + (ft_nb_len(flg->before) - 1);
+		}
+		else if (str[x] == '.')
+			x = x + read_dot(str + x, &flg);
+		x++;
+	}
+	return (x);
 }
-
-
 
 t_pf		ft_flags(char *str, va_list args, t_flg flg, t_pf pf)
 {
-    int x;
-    int z;
+	int	x;
+	int	z;
 
-    x = ft_read((char *)str, args, &flg);
-    z = check_args((char *)str + x, args, flg, &pf);
+	x = ft_read((char *)str, args, &flg);
+	z = check_args((char *)str + x, args, flg, &pf);
 	if (pf.none == 1)
 	{
 		if (flg.before > 0)
@@ -106,7 +103,5 @@ t_pf		ft_flags(char *str, va_list args, t_flg flg, t_pf pf)
 		pf.ret = z;
 		pf.x = pf.x + x + 1;
 	}
-
-
-    return (pf);
+	return (pf);
 }

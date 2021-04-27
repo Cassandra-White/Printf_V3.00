@@ -1,4 +1,3 @@
-
 #include "../ft_printf.h"
 
 int		flag_width_str(char *s, t_flg flg)
@@ -27,7 +26,7 @@ int		flag_width_str(char *s, t_flg flg)
 
 int		ft_flag_prec_str(char *str, t_flg flg)
 {
-	int		x;
+	int	x;
 
 	x = 0;
 	while (x < flg.after && str[x] != '\0')
@@ -35,10 +34,9 @@ int		ft_flag_prec_str(char *str, t_flg flg)
 	return (x);
 }
 
-
 int		write_str(char *s, t_flg flg)
 {
-	int		x;
+	int	x;
 
 	x = 0;
 	if (!s)

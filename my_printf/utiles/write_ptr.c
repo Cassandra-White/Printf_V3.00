@@ -7,14 +7,11 @@ int		ft_write_ptr(long ptr, t_flg flg)
 	x = 0;
 	if (ptr == 0 && flg.dot == 1 && flg.after == 0)
 		return (x);
-    if (ptr == -2147483648)
-        printf("je suis le meilleur");
 	if (ptr > 15)
 		x += ft_write_ptr((ptr / 16), flg);
 	x += ft_print_ptr(ptr % 16);
 	return (x);
 }
-
 
 int		write_width_ptr(unsigned long num, t_flg *flg)
 {

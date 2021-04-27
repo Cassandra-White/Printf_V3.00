@@ -1,8 +1,6 @@
-
-
 #include "ft_printf.h"
 
-void	ft_init(t_pf *pf, t_flg *flg)
+void		ft_init(t_pf *pf, t_flg *flg)
 {
 	pf->ret = 0;
 	pf->x = 0;
@@ -18,26 +16,26 @@ void	ft_init(t_pf *pf, t_flg *flg)
 	flg->dot = 0;
 }
 
-int     ft_printf(const char *str, ...)
+int			ft_printf(const char *str, ...)
 {
-    va_list     args;
-     t_pf		pf;
-	 t_flg		flg;
-    int         ret;
+	va_list	args;
+	t_pf	pf;
+	t_flg	flg;
+	int		ret;
 
-    ret = 0;
-    ft_init(&pf, &flg);
-    va_start(args, str);
-    while(str[pf.x])
-    {
-         if(str[pf.x] == '%')
-         {
-            pf = ft_flags((char *)str + pf.x + 1, args, flg, pf);
-            ret = ret + pf.ret;
-         }
-        else 
-            ret = ret + ft_putchar(str[pf.x]);
-            pf.x++;
-    }
-    return (ret);
+	ret = 0;
+	ft_init(&pf, &flg);
+	va_start(args, str);
+	while (str[pf.x])
+	{
+		if (str[pf.x] == '%')
+		{
+			pf = ft_flags((char *)str + pf.x + 1, args, flg, pf);
+			ret = ret + pf.ret;
+		}
+		else
+			ret = ret + ft_putchar(str[pf.x]);
+		pf.x++;
+	}
+	return (ret);
 }
