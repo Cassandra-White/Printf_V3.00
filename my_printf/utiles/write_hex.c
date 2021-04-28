@@ -6,7 +6,7 @@
 /*   By: akrissan <akrissan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 14:12:24 by akrissan          #+#    #+#             */
-/*   Updated: 2021/04/27 14:20:38 by akrissan         ###   ########.fr       */
+/*   Updated: 2021/04/28 08:46:02 by akrissan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		write_width_hex(unsigned int num, t_flg *flg)
 		size = flg->after;
 	else
 		size = ft_hex_len(num);
-	i = i - (size + (num));
+	i = i - (size + (num < 0));
 	if (num == 0 && flg->after == 0)
 		i++;
 	if (flg->zero == 1)
@@ -46,7 +46,7 @@ int		write_width_hex(unsigned int num, t_flg *flg)
 	else
 		while (i-- > 0)
 			x = x + ft_putchar(' ');
-	if (num && flg->align == 0 && flg->zero == 0)
+	if (num < 0 && flg->align == 0 && flg->zero == 0)
 		ft_putchar('-');
 	return (x);
 }
@@ -56,7 +56,7 @@ int		write_sign_hex(unsigned int num)
 	int x;
 
 	x = 0;
-	if (num)
+	if (num < 0)
 		x = x + ft_putchar('-');
 	return (x);
 }
